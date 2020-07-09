@@ -1,0 +1,43 @@
+<div class="col-sm-6 col-md-4">
+  <div class="card">
+    <div class="card-header">
+      Primeiro Exercício
+    </div>
+    <div class="card-body">
+      <form [formGroup]="form" appFormValidator>
+        <div class="row">
+          <div class="input-group">
+            <input type="tel" class="form-control"
+                   onkeypress="return String.fromCharCode(event.charCode).match(/[^0-9,-]/g) === null"
+                   id="inputValores" placeholder="Ensira os valores" formControlName="valores">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button" (click)="adicionarValores()">
+                Adicionar
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <small>Para inserir mais de um valor coloque ","</small>
+            <br>
+            <label *ngIf="listNumerosAdicionados != null && listNumerosAdicionados.length > 0">Entrada:
+              <span *ngFor="let item of listNumerosAdicionados; last as isLast">{{item}}{{isLast ? '' : ','}}</span>
+            </label>
+            <br>
+            <label *ngIf="listNumerosSaida != null && listNumerosSaida.length > 0">Saída:
+              <span *ngFor="let item of listNumerosSaida; last as isLast">{{item}}{{isLast ? '' : ','}}</span>
+            </label>
+          </div>
+        </div>
+        <div class="row float-right">
+          <div class="form-group">
+            <button class="btn btn-success" type="button" [disabled]="listNumerosSaida == null" (click)="confirmar()">
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
